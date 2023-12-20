@@ -2,7 +2,6 @@ package com.springbootdev.reto_thymeleaf.service;
 
 import com.springbootdev.reto_thymeleaf.Client.PersonaClient;
 import com.springbootdev.reto_thymeleaf.model.Persona;
-import com.springbootdev.reto_thymeleaf.model.Timer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ public class PersonaServiceImpl implements PersonaService{
     @Autowired
     protected PersonaClient personaClient;
 
-    protected Timer timeDelete_setup;
 
     @Override
     public List<Persona> findAll() {
@@ -48,21 +46,11 @@ public class PersonaServiceImpl implements PersonaService{
 
     }
     @Override
-//    @Scheduled(cron = "0 */5 * * * *")
-    @Scheduled(cron = "#{generadorCron()}")
+    @Scheduled(cron = "0 */2 * * * *")
     public void deleteAll() {
         personaClient.deleteAll();
 
     }
 
-    private String generadorCron(){
-        timeDelete_setup.setSegundos("*");
-        timeDelete_setup.setMinutos("*");
-        timeDelete_setup.setHoras("*");
-        timeDelete_setup.setDiaDelMes("*");
-        timeDelete_setup.setMes("*");
-        timeDelete_setup.setDiaDeLaSemana("*");
 
-        return timeDelete_setup.getSegundos() + " " + timeDelete_setup.getMinutos() + " " + timeDelete_setup.getHoras() + " " + timeDelete_setup.getDiaDelMes() + " " + timeDelete_setup.getMes() + " " + timeDelete_setup.getDiaDeLaSemana();
-    }
 }

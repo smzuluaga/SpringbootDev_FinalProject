@@ -66,9 +66,5 @@ public class PersonaController {
         return "/personas";
     }
 
-    @GetMapping("/config/deleteTime")
-    public void configDeleteTime (Model model){
-
-    }
 
 }
